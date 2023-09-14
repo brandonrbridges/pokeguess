@@ -45,12 +45,6 @@ export default function Home() {
 
 			toast.success('You got that right! +1 point')
 		} else {
-			const _guess = guess.split('')
-
-			pokemon?.name?.english.split('').map((letter, key) => {
-				console.log(`${key}: ${letter}`)
-			})
-
 			toast.error('Whoops! Wrong Pokémon! Try again.')
 		}
 	}
@@ -132,22 +126,22 @@ export default function Home() {
 	}, [])
 
 	return (
-		<main className='relative flex h-screen items-center justify-center w-full overflow-hidden'>
+		<main className='relative flex items-center justify-center w-full h-screen overflow-hidden'>
 			<Image
 				src={pokeballSVG}
 				alt='Pokéball'
 				height={500}
 				width={500}
-				className='absolute -right-4 -bottom-20 -rotate-12 -z-10 opacity-50'
+				className='absolute opacity-50 -right-20 md:-right-4 -bottom-20 -rotate-12 -z-10'
 			/>
 			<div className='flex flex-col items-center'>
 				<div>
 					<div className='mb-6 text-center'>
-						<p className='uppercase font-bold text-xs'>Score</p>
-						<p className='font-bold text-5xl'>{score}</p>
+						<p className='text-xs font-bold uppercase'>Score</p>
+						<p className='text-5xl font-bold'>{score}</p>
 					</div>
 
-					<div className='h-48 mx-auto relative w-96'>
+					<div className='relative h-48 mx-auto w-96'>
 						{pokemon?.id && (
 							<Image
 								src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`}
@@ -183,23 +177,23 @@ export default function Home() {
 						value={guess}
 						placeholder='Guess the Pokémon!'
 						onChange={(element) => setGuess(element.target.value)}
-						className='border border-slate-100 px-4 py-2 rounded focus:outline-none'
+						className='px-2 py-1 text-sm border rounded md:text-base md:py-2 md:px-4 border-slate-100 focus:outline-none'
 						autoCorrect='off'
 					/>
 
 					<button
 						type='submit'
-						className='bg-white hover:bg-emerald-100 border border-slate-100 hover:border-emerald-200 px-4 py-2 rounded hover:text-emerald-900   transition-colors'
+						className='px-2 py-1 text-sm transition-colors bg-white border rounded md:text-base md:py-2 md:px-4 hover:bg-emerald-100 border-slate-100 hover:border-emerald-200 hover:text-emerald-900'
 					>
 						Submit ✅
 					</button>
 				</form>
 
-				<div className='flex space-x-4 mt-4'>
+				<div className='flex mt-4 space-x-4'>
 					<button
 						type='submit'
 						onClick={handleReveal}
-						className='bg-white border border-slate-100 hover:border-pink-500 px-4 py-1 rounded transition-colors disabled:hover:border-inherit disabled:cursor-not-allowed disabled:opacity-50'
+						className='px-2 py-1 text-xs transition-colors bg-white border rounded md:text-sm md:px-4 border-slate-100 hover:border-pink-500 disabled:hover:border-inherit disabled:cursor-not-allowed disabled:opacity-50'
 						disabled={reveal}
 					>
 						Reveal? 🔍
@@ -207,25 +201,18 @@ export default function Home() {
 					<button
 						type='submit'
 						onClick={handleHint}
-						className='bg-white border border-slate-100 hover:border-orange-500 px-4 py-1 rounded transition-colors'
+						className='px-2 py-1 text-xs transition-colors bg-white border rounded md:text-sm md:px-4 border-slate-100 hover:border-orange-500'
 					>
 						Need a hint? 🤔
 					</button>
 					<button
 						type='submit'
 						onClick={handleSkip}
-						className='bg-white border border-slate-100 hover:border-green-300 px-4 py-1 rounded'
+						className='px-2 py-1 text-xs bg-white border rounded md:px-4 md:text-sm border-slate-100 hover:border-green-300'
 					>
 						Skip ➡️
 					</button>
 				</div>
-			</div>
-			<div className='absolute bottom-0 left-0 right-0 mb-4 w-full md:w-1/2 mr-auto px-4'>
-				<p className='text-xs text-slate-400'>
-					&copy; 1995 - {new Date().getFullYear()} Nintendo/Creatures Inc./GAME
-					FREAK inc. Pokémon and Pokémon character names are trademarks of
-					Nintendo. Trademarks are property of respective owners.
-				</p>
 			</div>
 		</main>
 	)
